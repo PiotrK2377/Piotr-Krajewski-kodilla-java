@@ -1,5 +1,6 @@
 package com.kodilla.stream;
 
+import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.ExpressionExecutor;
 import com.kodilla.stream.reference.FunctionalCalculator;
 import com.kodilla.stream.beautifier.PoemBeautifier;
@@ -28,5 +29,8 @@ public class StreamMain {
         poemBeautifier.beautify("holiday", txt -> txt.toUpperCase());
         poemBeautifier.beautify("COMPUTER", txt -> txt.toLowerCase());
         poemBeautifier.beautify("warszawa", txt -> txt.toUpperCase() + " " + "is the capitol city");
+
+        System.out.println("Using Stream to generate even numbers from 1 to 20");
+        NumbersGenerator.generateEven(20);
     }
 }
