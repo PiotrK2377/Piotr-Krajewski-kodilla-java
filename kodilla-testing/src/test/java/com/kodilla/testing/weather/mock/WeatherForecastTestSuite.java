@@ -69,7 +69,7 @@ public class WeatherForecastTestSuite {
         //When
         double averageTest = weatherForecast.averageTemperature();
         //Then
-        Assertions.assertEquals(25.560000000000002,averageTest);
+        Assertions.assertEquals(25.56,averageTest,0.01);
     }
 
     @DisplayName("Calculate Median Temperature")
