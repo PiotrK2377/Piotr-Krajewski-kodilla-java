@@ -12,8 +12,8 @@ public class Player {
         return name;
     }
 
-    public void setName() {
-        this.name = scanner.next();
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getValue() {

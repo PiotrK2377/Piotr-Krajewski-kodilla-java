@@ -10,6 +10,7 @@ public class Computer extends Player {
     @Override
     public int getValue() {
         return value = random.nextInt(3) + 1;
+
     }
 
 }
