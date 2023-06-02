@@ -26,6 +26,8 @@ public class RpsRunner {
 
             game.play(player, computer);
 
+
+
             if (game.getWins() >= gameConditions.getRounds() || game.getLosses() >= gameConditions.getRounds()) {
                 if (game.getWins() > game.getLosses()) {
                     System.out.println(player.getName() + " wins " + game.getWins() + " times");
@@ -40,6 +42,7 @@ public class RpsRunner {
                     String closed1 = scanner.next();
                     if (closed1.equals("y")) {
                         System.out.println("GAME OVER");
+                        end = true;
                         break;
                     }
                 }
@@ -47,11 +50,33 @@ public class RpsRunner {
                         System.out.println("Are you sure you want to end the current game ? \n[y] Yes");
                         String closed2 = scanner.next();
                         if (closed2.equals("y")) {
+                            System.out.println("New game has started");
                             end = true;
                             RpsRunner.main(new String[0]);
                         }
                }
             }
+
+            if (player.getValue().equals("x")) {
+                System.out.println("Are you sure finish the game ? \n[y] Yes");
+                String closedOne = scanner.next();
+                if (closedOne.equals("y")) {
+                    System.out.println("GAME OVER");
+                    end = true;
+                    break;
+                }
+            }
+            if (player.getValue().equals("n")) {
+                System.out.println("Are you sure you want to end the current game ? \n[y] Yes");
+                String closedTwo = scanner.next();
+                if (closedTwo.equals("y")) {
+                    System.out.println("New game has started");
+                    end = true;
+                    RpsRunner.main(new String[0]);
+                }
+            }
+
+
         }
     }
 }

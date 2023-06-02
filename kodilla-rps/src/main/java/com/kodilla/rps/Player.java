@@ -6,7 +6,17 @@ public class Player {
 
     Scanner scanner = new Scanner(System.in);
     private String name;
-    private int value;
+    private String value;
+
+    private String endNewGame;
+
+    public String getEndNewGame() {
+        return endNewGame;
+    }
+
+    public void setEndNewGame(String endNewGame) {
+        this.endNewGame = endNewGame;
+    }
 
     public String getName() {
         return name;
@@ -16,11 +26,11 @@ public class Player {
         this.name = name;
     }
 
-    public int getValue() {
-        return value = scanner.nextInt();
+    public String getValue() {
+        return value = value;
     }
 
-    public void setValue(int value) {
+    public void setValue(String value) {
         this.value = value;
     }
 }

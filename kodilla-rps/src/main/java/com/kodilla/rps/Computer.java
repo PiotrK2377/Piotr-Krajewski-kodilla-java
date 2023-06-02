@@ -2,14 +2,14 @@ package com.kodilla.rps;
 
 import java.util.Random;
 
-public class Computer extends Player {
+public class Computer  {
 
     Random random = new Random();
-    private int value;
+    private int valueComp;
 
-    @Override
+
     public int getValue() {
-        return value = random.nextInt(3) + 1;
+        return valueComp = random.nextInt(3) + 1;
 
     }
 
