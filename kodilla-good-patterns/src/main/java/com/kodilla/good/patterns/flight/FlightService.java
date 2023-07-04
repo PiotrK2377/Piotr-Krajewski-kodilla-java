@@ -16,15 +16,9 @@ public class FlightService {
         flights.add(flight);
     }
 
-    public List<Flight> findFlightsFrom(String fromAirport) {
+    public List<Flight> findFlights(String fromAirport, String toAirport) {
         return flights.stream()
-                .filter(flight -> flight.getFromAirport().equals(fromAirport))
-                .collect(Collectors.toList());
-    }
-
-    public List<Flight> findFlightsTo(String toAirport) {
-        return flights.stream()
-                .filter(flight -> flight.getToAirport().equals(toAirport))
+                .filter(flight -> flight.getFromAirport().equals(fromAirport) || flight.getToAirport().equals(toAirport))
                 .collect(Collectors.toList());
     }
 
@@ -52,5 +46,4 @@ public class FlightService {
             }
         }
     }
-
 }

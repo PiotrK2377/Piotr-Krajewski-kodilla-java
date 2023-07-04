@@ -30,12 +30,12 @@ public class Application {
         System.out.println("\nFlights from Gdańsk to Wrocław with transfers:");
         flightsVia.forEach(flight -> System.out.println(flight.getFromAirport() +  " -> " + flight.getToAirport()));
 
-        List<Flight> flightsToKrakow = flightService.findFlightsTo("Kraków");
-        System.out.println("\nFlights to Kraków:");
+        List<Flight> flightsToKrakow = flightService.findFlights("Any airport","Kraków");
+        System.out.println("\nAll flights to Kraków:");
         flightsToKrakow.forEach(flight -> System.out.println(flight.getFromAirport() + " -> " + flight.getToAirport()));
 
-        List<Flight> flightsFromGdansk = flightService.findFlightsFrom("Gdańsk");
-        System.out.println("\nFlights from Gdańsk:");
+        List<Flight> flightsFromGdansk = flightService.findFlights("Gdańsk","Any airport");
+        System.out.println("\nAll flights from Gdańsk:");
         flightsFromGdansk.forEach(flight -> System.out.println(flight.getFromAirport() + " -> " + flight.getToAirport()));
 
     }
