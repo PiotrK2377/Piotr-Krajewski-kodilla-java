@@ -4,19 +4,10 @@ import java.util.Scanner;
 
 public class Player {
 
-    Scanner scanner = new Scanner(System.in);
+
     private String name;
-    private String value;
+    private String valueMove;
 
-    private String endNewGame;
-
-    public String getEndNewGame() {
-        return endNewGame;
-    }
-
-    public void setEndNewGame(String endNewGame) {
-        this.endNewGame = endNewGame;
-    }
 
     public String getName() {
         return name;
@@ -26,11 +17,11 @@ public class Player {
         this.name = name;
     }
 
-    public String getValue() {
-        return value = value;
+    public String getValueMove() {
+        return valueMove = valueMove;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setValue(String valueMove) {
+        this.valueMove = valueMove;
     }
 }

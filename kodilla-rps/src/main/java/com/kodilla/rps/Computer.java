@@ -5,11 +5,11 @@ import java.util.Random;
 public class Computer  {
 
     Random random = new Random();
-    private int valueComp;
+    private int valueMove;
 
 
-    public int getValue() {
-        return valueComp = random.nextInt(3) + 1;
+    public int getValueMove() {
+        return valueMove = random.nextInt(3) + 1;
 
     }
 

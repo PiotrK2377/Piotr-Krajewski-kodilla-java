@@ -14,10 +14,43 @@ public class Game {
         System.out.println("Choose: [1]Rock / [2]Paper / [3]Scissors / [x]Game Exit / [n] New Game");
         String movePlayer = scanner.next();
         player.setValue(movePlayer);
-        int moveComputer = computer.getValue();
+        int moveComputer = computer.getValueMove();
 
+        gameConditions(movePlayer, moveComputer);
+        displayMovePlayer(player, movePlayer);
+        displayMoveComputer(movePlayer, moveComputer);
+        displayScore(movePlayer);
 
+    }
 
+    private void displayScore(String movePlayer) {
+        if (movePlayer.equals("1") || movePlayer.equals("2") || movePlayer.equals("3")) {
+            System.out.println("Wins: " + wins + "|" + " Lost: " + losses + "|" + " Tied: " + tied);
+            System.out.println("--------------------------");
+        }
+    }
+
+    private static void displayMoveComputer(String movePlayer, int moveComputer) {
+        if (moveComputer == 1 && !movePlayer.equals("x") && !movePlayer.equals("n")) {
+            System.out.println("Computer choose Rock");
+        } else if (moveComputer == 2 && !movePlayer.equals("x") && !movePlayer.equals("n")) {
+            System.out.println("Computer choose Paper");
+        } else if (moveComputer == 3 && !movePlayer.equals("x") && !movePlayer.equals("n")) {
+            System.out.println("Computer choose Scissors");
+        }
+    }
+
+    private static void displayMovePlayer(Player player, String movePlayer) {
+        if (movePlayer.equals("1")) {
+            System.out.println(player.getName() + " choose Rock");
+        } else if (movePlayer.equals("2")) {
+            System.out.println(player.getName() + " choose Paper");
+        } else if (movePlayer.equals("3")) {
+            System.out.println(player.getName() + " choose Scissors");
+        }
+    }
+
+    private void gameConditions(String movePlayer, int moveComputer) {
         if ((movePlayer.equals("1")  && moveComputer == 3) || (movePlayer.equals("2") && moveComputer == 1) || (movePlayer.equals("3") && moveComputer == 2)) {
             wins++;
             System.out.println("You win");
@@ -31,27 +64,6 @@ public class Game {
         } else if (!movePlayer.equals("1") && !movePlayer.equals("2") && !movePlayer.equals("3") && !movePlayer.equals("x") && !movePlayer.equals("n")) {
             System.out.println("The selection range is 1 to 3 and x or n, try again correctly");
         }
-
-        if (movePlayer.equals("1")) {
-            System.out.println(player.getName() + " choose Rock");
-        } else if (movePlayer.equals("2")) {
-            System.out.println(player.getName() + " choose Paper");
-        } else if (movePlayer.equals("3")) {
-            System.out.println(player.getName() + " choose Scissors");
-        }
-
-        if (moveComputer == 1 && !movePlayer.equals("x") && !movePlayer.equals("n")) {
-            System.out.println("Computer choose Rock");
-        } else if (moveComputer == 2 && !movePlayer.equals("x") && !movePlayer.equals("n")) {
-            System.out.println("Computer choose Paper");
-        } else if (moveComputer == 3 && !movePlayer.equals("x") && !movePlayer.equals("n")) {
-            System.out.println("Computer choose Scissors");
-        }
-
-        if (movePlayer.equals("1") || movePlayer.equals("2") || movePlayer.equals("3")) {
-            System.out.println("Wins: " + wins + "|" + " Lost: " + losses + "|" + " Tied: " + tied);
-            System.out.println("--------------------------");
-        }
     }
 
     public int getWins() {
@@ -62,7 +74,4 @@ public class Game {
         return losses;
     }
 
-    public int getTied() {
-        return tied;
-    }
 }
