@@ -1,0 +1,47 @@
+CREATE TABLE ISSUELISTS
+(
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100) NOT NULL
+
+);
+
+CREATE TABLE ISSUES
+(
+    ID SERIAL PRIMARY KEY,
+    ISSUESLIST_ID BIGINT UNSIGNED NOT NULL,
+    SUMMARY VARCHAR(100) NOT NULL,
+    DESCRIPTION VARCHAR(1024),
+    USER_ID_ASSIGNEDTO BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (ISSUESLIST_ID) REFERENCES ISSUELISTS(ID),
+    FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS(ID)
+
+);
+
+INSERT INTO ISSUELISTS (NAME) VALUES ('ToDo');
+INSERT INTO ISSUELISTS (NAME) VALUES ('In progress');
+INSERT INTO ISSUELISTS (NAME) VALUES ('Done');
+
+COMMIT;
+SELECT * FROM ISSUELISTS;
+
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+VALUES (4, 'Task number 1', 'Description task 1', 1);
+
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+VALUES (4, 'Task number 2', 'Description task 2', 2),
+    (4, 'Task number 3', 'Description task 3', 3),
+    (4, 'Task number 4', 'Description task 4', 1),
+    (4, 'Task number 5', 'Description task 5', 2),
+    (5, 'Task number 6', 'Description task 6', 3),
+    (5, 'Task number 7', 'Description task 7', 1),
+    (5, 'Task number 8', 'Description task 8', 2),
+    (5, 'Task number 9', 'Description task 9', 3),
+    (5, 'Task number 10', 'Description task 10', 1),
+    (6, 'Task number 11', 'Description task 11', 2),
+    (6, 'Task number 12', 'Description task 12', 3),
+    (6, 'Task number 13', 'Description task 13', 1),
+    (6, 'Task number 14', 'Description task 14', 2),
+    (6, 'Task number 15', 'Description task 15', 3);
+
+COMMIT;
+SELECT * FROM ISSUES;
