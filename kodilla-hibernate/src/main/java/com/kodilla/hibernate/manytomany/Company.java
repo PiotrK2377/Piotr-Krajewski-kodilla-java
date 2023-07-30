@@ -6,6 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "Company.findCompanyWithFirstThreeLetters",
+        query = "FROM Company WHERE SUBSTRING(name, 1, 3) =:THREE_LETTERS"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

@@ -14,6 +14,9 @@ public class CompanyDaoTestSuite {
     @Autowired
     private CompanyDao companyDao;
 
+    @Autowired
+    private EmployeeDao employeeDao;
+
     @Test
     void testSaveManyToMany() {
         //Given
@@ -58,5 +61,42 @@ public class CompanyDaoTestSuite {
        } catch (Exception e) {
 
        }
+    }
+
+    @Test
+    void testFindCompanyAfterFirstThreeLetters() {
+        //Given
+        Company company = new Company("Amazon");
+        companyDao.save(company);
+        int companyId = company.getId();
+
+        //When & Then
+        assertEquals(1, companyDao.findCompanyWithFirstThreeLetters("Ama").size());
+
+        //Clean
+        try {
+            companyDao.deleteById(companyId);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    @Test
+    void testFindEmployeeByLastname() {
+        //Given
+        Employee employee = new Employee("John", "Smith");
+        employeeDao.save(employee);
+        int employeeId = employee.getId();
+
+        //When & Then
+        assertEquals(1, employeeDao.findEmployeeByLastname("Smith").size());
+
+        //CleanUp
+        try {
+            employeeDao.deleteById(employeeId);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
