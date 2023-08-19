@@ -33,36 +33,36 @@ public class Game {
     }
 
     private void displayMoveComputer(MoveType moveComputer, Player player) {
-        if (moveComputer == MoveType.ROCK && !player.getValueMove().equals(MoveType.NEW) && !player.getValueMove().equals(MoveType.EXIT)) {
+        if (moveComputer.equals(MoveType.ROCK) && !player.getValueMove().equals(MoveType.NEW) && !player.getValueMove().equals(MoveType.EXIT)) {
             System.out.println("Computer choose " + MoveType.ROCK);
-        } else if (moveComputer == MoveType.PAPER && !player.getValueMove().equals(MoveType.NEW) && !player.getValueMove().equals(MoveType.EXIT)) {
+        } else if (moveComputer.equals(MoveType.PAPER) && !player.getValueMove().equals(MoveType.NEW) && !player.getValueMove().equals(MoveType.EXIT)) {
             System.out.println("Computer choose " + MoveType.PAPER);
-        } else if (moveComputer == MoveType.SCISSORS && !player.getValueMove().equals(MoveType.NEW) && !player.getValueMove().equals(MoveType.EXIT)) {
+        } else if (moveComputer.equals(MoveType.SCISSORS) && !player.getValueMove().equals(MoveType.NEW) && !player.getValueMove().equals(MoveType.EXIT)) {
             System.out.println("Computer choose " + MoveType.SCISSORS);
         }
     }
 
     private void displayMovePlayer(Player player, MoveType movePlayer) {
-        if (movePlayer == MoveType.EXIT || movePlayer == MoveType.NEW) {
+        if (movePlayer.equals(MoveType.EXIT) || movePlayer.equals(MoveType.NEW)) {
 
         } else
         System.out.println(player.getName() + " choose " + movePlayer);
     }
 
     private void gameConditions(MoveType movePlayer, MoveType moveComputer) {
-        if ((movePlayer == MoveType.ROCK && moveComputer == MoveType.SCISSORS) ||
-                (movePlayer == MoveType.PAPER && moveComputer == MoveType.ROCK) ||
-                (movePlayer == MoveType.SCISSORS && moveComputer == MoveType.PAPER)) {
+        if ((movePlayer.equals(MoveType.ROCK) && moveComputer.equals(MoveType.SCISSORS)) ||
+                (movePlayer.equals(MoveType.PAPER) && moveComputer.equals(MoveType.ROCK)) ||
+                (movePlayer.equals(MoveType.SCISSORS) && moveComputer.equals(MoveType.PAPER))) {
             wins++;
             System.out.println("You win");
-        } else if ((movePlayer == MoveType.ROCK && moveComputer == MoveType.ROCK) ||
-                (movePlayer == MoveType.PAPER && moveComputer == MoveType.PAPER) ||
-                (movePlayer == MoveType.SCISSORS && moveComputer == MoveType.SCISSORS)) {
+        } else if ((movePlayer.equals(MoveType.ROCK) && moveComputer.equals(MoveType.ROCK)) ||
+                (movePlayer.equals(MoveType.PAPER) && moveComputer.equals(MoveType.PAPER)) ||
+                (movePlayer.equals(MoveType.SCISSORS) && moveComputer.equals(MoveType.SCISSORS))) {
             tied++;
             System.out.println("You tied");
-        } else if ((movePlayer == MoveType.ROCK && moveComputer == MoveType.PAPER) ||
-                (movePlayer == MoveType.PAPER && moveComputer == MoveType.SCISSORS) ||
-                (movePlayer == MoveType.SCISSORS && moveComputer == MoveType.ROCK))  {
+        } else if ((movePlayer.equals(MoveType.ROCK) && moveComputer.equals(MoveType.PAPER)) ||
+                (movePlayer.equals(MoveType.PAPER) && moveComputer.equals(MoveType.SCISSORS)) ||
+                (movePlayer.equals(MoveType.SCISSORS) && moveComputer.equals(MoveType.ROCK)))  {
             losses++;
             System.out.println("You lost");
         }
