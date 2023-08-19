@@ -10,59 +10,61 @@ public class Game {
     int tied = 0;
 
 
+
     public void play(Player player, Computer computer) {
         System.out.println("Choose: [1]Rock / [2]Paper / [3]Scissors / [x]Game Exit / [n] New Game");
         String movePlayer = scanner.next();
         player.setValue(movePlayer);
+        MoveType movePlayerEnum = player.getValueMove();
         int moveComputer = computer.getValueMove();
 
-        gameConditions(movePlayer, moveComputer);
-        displayMovePlayer(player, movePlayer);
-        displayMoveComputer(movePlayer, moveComputer);
-        displayScore(movePlayer);
+        gameConditions(movePlayerEnum, MoveType.values()[moveComputer - 1]);
+        displayMovePlayer(player, movePlayerEnum);
+        displayMoveComputer(MoveType.values()[moveComputer - 1], player);
+        displayScore(player);
 
     }
 
-    private void displayScore(String movePlayer) {
-        if (movePlayer.equals("1") || movePlayer.equals("2") || movePlayer.equals("3")) {
+    private void displayScore(Player player) {
+        if (player.getValueMove().equals(MoveType.ROCK)|| player.getValueMove().equals(MoveType.PAPER) || player.getValueMove().equals(MoveType.SCISSORS)) {
             System.out.println("Wins: " + wins + "|" + " Lost: " + losses + "|" + " Tied: " + tied);
             System.out.println("--------------------------");
         }
     }
 
-    private static void displayMoveComputer(String movePlayer, int moveComputer) {
-        if (moveComputer == 1 && !movePlayer.equals("x") && !movePlayer.equals("n")) {
-            System.out.println("Computer choose Rock");
-        } else if (moveComputer == 2 && !movePlayer.equals("x") && !movePlayer.equals("n")) {
-            System.out.println("Computer choose Paper");
-        } else if (moveComputer == 3 && !movePlayer.equals("x") && !movePlayer.equals("n")) {
-            System.out.println("Computer choose Scissors");
+    private void displayMoveComputer(MoveType moveComputer, Player player) {
+        if (moveComputer == MoveType.ROCK && !player.getValueMove().equals(MoveType.NEW) && !player.getValueMove().equals(MoveType.EXIT)) {
+            System.out.println("Computer choose " + MoveType.ROCK);
+        } else if (moveComputer == MoveType.PAPER && !player.getValueMove().equals(MoveType.NEW) && !player.getValueMove().equals(MoveType.EXIT)) {
+            System.out.println("Computer choose " + MoveType.PAPER);
+        } else if (moveComputer == MoveType.SCISSORS && !player.getValueMove().equals(MoveType.NEW) && !player.getValueMove().equals(MoveType.EXIT)) {
+            System.out.println("Computer choose " + MoveType.SCISSORS);
         }
     }
 
-    private static void displayMovePlayer(Player player, String movePlayer) {
-        if (movePlayer.equals("1")) {
-            System.out.println(player.getName() + " choose Rock");
-        } else if (movePlayer.equals("2")) {
-            System.out.println(player.getName() + " choose Paper");
-        } else if (movePlayer.equals("3")) {
-            System.out.println(player.getName() + " choose Scissors");
-        }
+    private void displayMovePlayer(Player player, MoveType movePlayer) {
+        if (movePlayer == MoveType.EXIT || movePlayer == MoveType.NEW) {
+
+        } else
+        System.out.println(player.getName() + " choose " + movePlayer);
     }
 
-    private void gameConditions(String movePlayer, int moveComputer) {
-        if ((movePlayer.equals("1")  && moveComputer == 3) || (movePlayer.equals("2") && moveComputer == 1) || (movePlayer.equals("3") && moveComputer == 2)) {
+    private void gameConditions(MoveType movePlayer, MoveType moveComputer) {
+        if ((movePlayer == MoveType.ROCK && moveComputer == MoveType.SCISSORS) ||
+                (movePlayer == MoveType.PAPER && moveComputer == MoveType.ROCK) ||
+                (movePlayer == MoveType.SCISSORS && moveComputer == MoveType.PAPER)) {
             wins++;
             System.out.println("You win");
-
-        } else if((movePlayer.equals("1") && moveComputer == 1) || (movePlayer.equals("2") && moveComputer == 2) || (movePlayer.equals("3") && moveComputer == 3)) {
+        } else if ((movePlayer == MoveType.ROCK && moveComputer == MoveType.ROCK) ||
+                (movePlayer == MoveType.PAPER && moveComputer == MoveType.PAPER) ||
+                (movePlayer == MoveType.SCISSORS && moveComputer == MoveType.SCISSORS)) {
             tied++;
             System.out.println("You tied");
-        } else if (moveComputer == 1 && movePlayer.equals("3") || (moveComputer == 2 && movePlayer.equals("1")) || (moveComputer == 3 && movePlayer.equals("2"))){
+        } else if ((movePlayer == MoveType.ROCK && moveComputer == MoveType.PAPER) ||
+                (movePlayer == MoveType.PAPER && moveComputer == MoveType.SCISSORS) ||
+                (movePlayer == MoveType.SCISSORS && moveComputer == MoveType.ROCK))  {
             losses++;
             System.out.println("You lost");
-        } else if (!movePlayer.equals("1") && !movePlayer.equals("2") && !movePlayer.equals("3") && !movePlayer.equals("x") && !movePlayer.equals("n")) {
-            System.out.println("The selection range is 1 to 3 and x or n, try again correctly");
         }
     }
 

@@ -20,28 +20,32 @@ public class RpsRunner {
         System.out.println(player.getName() + " how many wins rounds do you could play ?");
         int rounds = scanner.nextInt();
         gameConditions.setRounds(rounds);
-        
+
         while (!end) {
-            
-            game.play(player, computer);
-            
-            if (game.getWins() >= gameConditions.getRounds() || game.getLosses() >= gameConditions.getRounds()) {
-                countingScore(player, game);
-                String close = exitGame(scanner, gameConditions);
-                if (close == null) break;
+            try {
+                game.play(player, computer);
 
-                end = newGame(close, scanner, end);
+                if (game.getWins() >= gameConditions.getRounds() || game.getLosses() >= gameConditions.getRounds()) {
+                    countingScore(player, game);
+                    String close = exitGame(scanner, gameConditions);
+                    if (close == null) break;
+
+                    end = newGame(player, scanner, end);
+                }
+
+                if (endCurrentGame(scanner, player)) break;
+
+                end = newGame(player, scanner, end);
+            } catch (WrongMoveException e) {
+                System.out.println("Invalid move: " + e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("An error occurred: " + e.getMessage());
             }
-
-            if (endCurrentGame(scanner, player)) break;
-
-            end = newGame(player.getValueMove(), scanner, end);
-
         }
     }
-
     private static boolean endCurrentGame(Scanner scanner, Player player) {
-        if (player.getValueMove().equals("x")) {
+        if (player.getValueMove().equals(MoveType.EXIT)) {
             System.out.println("Are you sure finish the game ? \n[y] Yes");
             String closedOne = scanner.next();
             if (closedOne.equals("y")) {
@@ -75,8 +79,8 @@ public class RpsRunner {
         }
     }
 
-    private static boolean newGame(String player, Scanner scanner, boolean end) {
-        if (player.equals("n")) {
+    private static boolean newGame(Player player, Scanner scanner, boolean end) {
+        if (player.getValueMove().equals(MoveType.NEW)) {
             System.out.println("Are you sure you want to end the current game ? \n[y] Yes");
             String closedTwo = scanner.next();
             if (closedTwo.equals("y")) {
