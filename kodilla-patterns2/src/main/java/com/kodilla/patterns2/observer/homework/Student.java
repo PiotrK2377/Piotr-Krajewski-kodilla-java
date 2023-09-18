@@ -37,4 +37,11 @@ public class Student implements ObservableHomework {
         mentors.remove(observerHomework);
     }
 
+    public List<String> getHomeworkLists() {
+        return homeworkLists;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
